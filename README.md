@@ -1,6 +1,6 @@
 # flutterweather
 
-A new Flutter project.
+This is a flutter weather app using bloc pattern.
 
 ## Getting Started
 
