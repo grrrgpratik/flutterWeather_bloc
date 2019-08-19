@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterweather/bloc/settings_bloc.dart';
 
 import 'package:flutterweather/model/models.dart' as model;
 import 'package:flutterweather/widgets/temperature.dart';
@@ -26,11 +28,15 @@ class CombinedWeatherTemperature extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(20.0),
-              child: Temperature(
-                temperature: weather.temp,
-                high: weather.maxTemp,
-                low: weather.minTemp,
-              ),
+              child: BlocBuilder<SettingsBloc, SettingsState>(
+                  builder: (context, state) {
+                return Temperature(
+                  temperature: weather.temp,
+                  high: weather.maxTemp,
+                  low: weather.minTemp,
+                  units: state.temperatureUnits,
+                );
+              }),
             ),
           ],
         ),

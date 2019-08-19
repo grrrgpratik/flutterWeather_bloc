@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterweather/bloc/settings_bloc.dart';
 import 'package:flutterweather/bloc/weather_bloc.dart';
 import 'package:flutterweather/repositories/repositories.dart';
 import 'package:flutterweather/widgets/weather.dart';
@@ -20,7 +21,11 @@ void main() {
   final WeatherRepository weatherRepository = WeatherRepository(
       weatherApiClient: WeatherApiClient(httpClient: http.Client()));
 
-  runApp(App(weatherRepository: weatherRepository));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<SettingsBloc>(
+      builder: (context) => SettingsBloc(),
+    )
+  ], child: App(weatherRepository: weatherRepository)));
 }
 
 class App extends StatelessWidget {

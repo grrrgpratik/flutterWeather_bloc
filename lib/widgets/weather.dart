@@ -7,6 +7,7 @@ import 'package:flutterweather/widgets/city_selection.dart';
 import 'package:flutterweather/widgets/combined_weather_temperature.dart';
 import 'package:flutterweather/widgets/last_updated.dart';
 import 'package:flutterweather/widgets/location.dart';
+import 'package:flutterweather/widgets/settings.dart';
 
 class Weather extends StatefulWidget {
   @override
@@ -29,6 +30,17 @@ class _WeatherState extends State<Weather> {
       appBar: AppBar(
         title: Text("Flutter Weather"),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Settings(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
